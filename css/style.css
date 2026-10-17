@@ -184,14 +184,18 @@ body {
   position: relative;                 /* 连线 SVG 的定位参照 */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 54px;
+  /* 左右两栏共享同一批行：每行高度取两侧较高的一张，中文换行时英文那行同步撑高，
+     保证中英文逐行对齐（行数由 JS 按 ROUND_SIZE 写入 --rows） */
+  grid-template-rows: repeat(var(--rows, 6), auto);
+  grid-auto-flow: column;
+  column-gap: 54px;
+  row-gap: 12px;
   padding: 4px;
 }
 
+/* display:contents 让卡片直接成为 board 的网格项，两列才会共享行高 */
 .column {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: contents;
 }
 
 /* 卡片 */
@@ -459,11 +463,10 @@ body {
   .statusbar { gap: 12px; padding: 12px 14px; }
   .statusbar .btn { margin-left: 0; }
 
-  .board, .board-head { gap: 20px; }
+  .board { column-gap: 20px; row-gap: 10px; }
+  .board-head { gap: 20px; }
 
   .card { min-height: 50px; font-size: 14px; padding: 8px 10px; }
-
-  .column { gap: 10px; }
 
   .modal-actions .btn { width: 100%; }
 }

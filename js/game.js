@@ -325,6 +325,9 @@
     dom.colZh.innerHTML = '';
     dom.lines.innerHTML = '';
 
+    // 关键：告诉 CSS 一共有几行，左右两栏才能共享行高（逐行对齐）
+    dom.board.style.setProperty('--rows', String(ROUND_SIZE));
+
     var enOrder = shuffle(state.pairs);   // 左栏顺序
     var zhOrder = shuffle(state.pairs);   // 右栏顺序
 
