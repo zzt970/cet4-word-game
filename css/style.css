@@ -1,5 +1,5 @@
 /* ==========================================================
- * 四级单词左右连线闯关 · 样式表
+ * 四级单词连线闯关 · 样式表
  * 风格：低饱和暖杏色背景 + 白色卡片 + 简约细边框（学习工具风）
  * ========================================================== */
 
@@ -197,6 +197,10 @@ body {
 /* 卡片 */
 .card {
   display: flex;
+  /* 手机端触摸优化：去掉点击高亮/文本选中/双指缩放假手势 */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none; user-select: none;
+  touch-action: manipulation;
   align-items: center;
   justify-content: center;
   width: 100%;
